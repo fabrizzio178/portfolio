@@ -7,8 +7,6 @@ import {
   GitBranch, 
   Container, 
   Box, 
-  TerminalSquare,
-  Workflow,
   Cpu,
   ArrowDown
 } from 'lucide-react';
