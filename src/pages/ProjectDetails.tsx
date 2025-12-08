@@ -1,7 +1,7 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Github, ExternalLink, Cpu, PlayCircle, FileText, X, ZoomIn, ZoomOut } from 'lucide-react';
 import { projects } from '../data/projects';
-import { useEffect, useState, useRef } from 'react'; // Agregué useRef
+import { useEffect, useState, useRef } from 'react';
 import { Button } from '../components/UI/Button';
 
 const getEmbedUrl = (url: string) => {
@@ -14,15 +14,17 @@ const getEmbedUrl = (url: string) => {
 
 export default function ProjectDetails() {
   const { id } = useParams();
-  const project = projects.find((p) => p.id === id);
-  
-  // Estados para el Lightbox y el Zoom
+  const navigate = useNavigate();
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [isZoomed, setIsZoomed] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const imgRef = useRef<HTMLImageElement>(null);
+  
+  const project = projects.find((p) => p.id === id);
 
   useEffect(() => {
+    // Esto asegura que AL ENTRAR al proyecto vayas arriba.
+    // Al volver ATRAS, el navegador se encarga de restaurar la posición.
     window.scrollTo(0, 0);
   }, []);
 
@@ -31,12 +33,11 @@ export default function ProjectDetails() {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
-      setIsZoomed(false); // Reset zoom al cerrar
+      setIsZoomed(false);
     }
     return () => { document.body.style.overflow = 'unset'; };
   }, [isLightboxOpen]);
 
-  // Manejador de movimiento del mouse para el PAN
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!isZoomed) return;
     const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
@@ -45,11 +46,22 @@ export default function ProjectDetails() {
     setMousePos({ x, y });
   };
 
+  // --- CORRECCIÓN CLAVE AQUÍ ---
+  const handleGoBack = () => {
+    // Verificamos si hay historial en el navegador (state.idx > 0 indica que no es la primera página)
+    if (window.history.state && window.history.state.idx > 0) {
+      navigate(-1); // Esto vuelve atrás Y recupera el scroll exacto
+    } else {
+      // Si no hay historial (ej: abriste el link directo), vamos al home manualmente
+      navigate('/', { replace: true }); 
+    }
+  };
+
   if (!project) {
     return (
       <div className="flex h-screen flex-col items-center justify-center gap-4 text-slate-400">
         <p className="text-lg">Proyecto no encontrado.</p>
-        <Link to="/" className="text-indigo-400 underline hover:text-indigo-300">Volver al inicio</Link>
+        <button onClick={() => navigate('/')} className="text-indigo-400 underline hover:text-indigo-300">Volver al inicio</button>
       </div>
     );
   }
@@ -74,18 +86,17 @@ export default function ProjectDetails() {
   }
 
   return (
-    <article className="min-h-screen pb-16 pt-24 animate-in fade-in duration-500">
+    <article className="min-h-screen pb-24 animate-in fade-in duration-500">
       
-      {/* --- LIGHTBOX MODAL CON ZOOM --- */}
+      {/* --- LIGHTBOX MODAL --- */}
       {isLightboxOpen && project.image && (
         <div 
           className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-sm transition-opacity duration-300 overflow-hidden"
           onClick={() => setIsLightboxOpen(false)}
         >
-          {/* Botones de Control */}
           <div className="absolute top-6 right-6 z-50 flex gap-3">
-             {/* Botón Zoom Manual (Opcional, también funciona con click en img) */}
              <button 
+              type="button"
               className="rounded-full bg-white/10 p-2 text-white hover:bg-white/20 transition-colors"
               onClick={(e) => { e.stopPropagation(); setIsZoomed(!isZoomed); }}
               title={isZoomed ? "Alejar" : "Acercar"}
@@ -94,6 +105,7 @@ export default function ProjectDetails() {
             </button>
 
             <button 
+              type="button"
               className="rounded-full bg-white/10 p-2 text-white hover:bg-white/20 transition-colors"
               onClick={() => setIsLightboxOpen(false)}
               title="Cerrar"
@@ -102,7 +114,6 @@ export default function ProjectDetails() {
             </button>
           </div>
           
-          {/* Contenedor de Imagen */}
           <div 
             className={`relative w-full h-full flex items-center justify-center transition-all duration-300 ${isZoomed ? 'cursor-zoom-out' : 'cursor-zoom-in'}`}
             onMouseMove={handleMouseMove}
@@ -119,28 +130,29 @@ export default function ProjectDetails() {
                 }}
              />
           </div>
-          
-          {/* Hint de ayuda */}
-          {!isZoomed && (
-             <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-black/50 px-4 py-2 rounded-full text-sm text-white/80 backdrop-blur-sm pointer-events-none">
-                Click para hacer zoom
-             </div>
-          )}
         </div>
       )}
 
-      <div className="mx-auto max-w-4xl px-6">
-        
-        <Link 
-          to="/" 
-          className="group mb-8 inline-flex items-center text-sm font-medium text-slate-400 transition-colors hover:text-indigo-400"
-        >
-          <div className="mr-2 rounded-full border border-slate-800 bg-slate-900 p-1 transition-colors group-hover:border-indigo-500/50 group-hover:bg-indigo-500/10">
-             <ArrowLeft className="h-4 w-4" />
+      {/* --- BARRA DE NAVEGACIÓN FLOTANTE --- */}
+      {/* Subí el z-index a z-50 para asegurar que sea clickeable siempre */}
+      <div className="sticky top-0 z-50 w-full border-b border-white/5 bg-slate-950/80 backdrop-blur-md">
+          <div className="mx-auto max-w-4xl px-6 h-16 flex items-center">
+            <button 
+              type="button"
+              onClick={handleGoBack}
+              className="group inline-flex items-center text-sm font-medium text-slate-400 transition-colors hover:text-indigo-400 cursor-pointer select-none"
+            >
+              <div className="mr-2 rounded-full border border-slate-800 bg-slate-900 p-1.5 transition-colors group-hover:border-indigo-500/50 group-hover:bg-indigo-500/10">
+                <ArrowLeft className="h-4 w-4" />
+              </div>
+              Volver al portfolio
+            </button>
           </div>
-          Volver al portfolio
-        </Link>
+      </div>
 
+      <div className="mx-auto max-w-4xl px-6 pt-12"> 
+        
+        {/* Header del Proyecto */}
         <header className="mb-10">
           <div className="mb-4 flex flex-wrap items-center gap-3">
             <span className="rounded-full border border-indigo-500/30 bg-indigo-500/10 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider text-indigo-300 shadow-[0_0_10px_rgba(99,102,241,0.2)]">
@@ -150,7 +162,7 @@ export default function ProjectDetails() {
             <span className="text-sm font-medium text-slate-400">{project.technologies[0]}</span>
           </div>
           
-          <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl leading-tight">
+          <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl leading-tight text-glow">
             {project.title}
           </h1>
           
@@ -172,7 +184,7 @@ export default function ProjectDetails() {
           </div>
         </header>
 
-        {/* VISUAL PRINCIPAL */}
+        {/* --- VISUAL PRINCIPAL --- */}
         <div className="relative mb-16 overflow-hidden rounded-2xl border border-slate-800 bg-slate-950 shadow-xl shadow-black/40 group">
             
             {labelContent && (
@@ -197,9 +209,9 @@ export default function ProjectDetails() {
                       onClick={() => setIsLightboxOpen(true)}
                    >
                        <img 
-                         src={project.image} 
-                         alt={project.title} 
-                         className="w-full h-full object-contain p-4 transition-transform duration-300 group-hover/img:scale-[1.01]" 
+                          src={project.image} 
+                          alt={project.title} 
+                          className="w-full h-full object-contain p-4 transition-transform duration-300 group-hover/img:scale-[1.01]" 
                        />
                        
                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 pointer-events-none">
@@ -217,6 +229,7 @@ export default function ProjectDetails() {
             </div>
         </div>
 
+        {/* --- CONTENIDO DETALLADO --- */}
         <div className="grid gap-10 lg:grid-cols-[1.8fr,1fr]">
           
           <div className="space-y-12">
