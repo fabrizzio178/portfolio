@@ -44,12 +44,13 @@ export default function ProjectDetails() {
     setMousePos({ x, y });
   };
 
+  // --- SOLUCIÓN DEL BUG ---
+  // En lugar de volver al historial (-1) que puede estar sucio con el hash de #contact,
+  // forzamos la navegación explícitamente a la sección de proyectos.
   const handleGoBack = () => {
-    if (window.history.state && window.history.state.idx > 0) {
-      navigate(-1); // El navegador se encarga del scroll aquí
-    } else {
-      navigate('/', { replace: true }); 
-    }
+     // Usamos replace: true para limpiar el historial y que el botón "Atrás" del navegador
+     // no te meta en un bucle.
+     navigate('/#projects', { replace: true });
   };
 
   const handleContactNavigation = () => {
@@ -132,7 +133,7 @@ export default function ProjectDetails() {
         </div>
       )}
 
-      {/* --- Barra de nav flot --- */}
+      {/* --- BARRA DE NAVEGACIÓN FLOTANTE --- */}
       <div className="sticky top-0 z-50 w-full border-b border-white/5 bg-slate-950/80 backdrop-blur-md">
           <div className="mx-auto max-w-4xl px-6 h-16 flex items-center">
             <button 
