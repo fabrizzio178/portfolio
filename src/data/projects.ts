@@ -1,6 +1,7 @@
 import { Layout, Server, CreditCard, Lock } from 'lucide-react';
 
 import tpiImg from "../assets/tpiImg.jpg";
+import imgDevOps from "../assets/imgDevOps.png";
 
 export type Project = {
   id: string;
@@ -71,5 +72,22 @@ export const projects: Project[] = [
 	githubUrl: "https://github.com/fabrizzio178/tp-backendDeApps",
 	image: tpiImg,
 	demoLabel: "Diagrama C4 de Contenedores Nivel 2"
+  },
+  {
+    id: 'devops',
+    title: 'Proyecto DevOps - Automatización y Despliegue Continuo',
+    shortDescription: 'Implementación de un pipeline CI/CD para una aplicación web hecha con Java SpringBoot.',
+    fullDescription: 'Desarrollé un pipeline de integración y despliegue continuo (CI/CD) utilizando herramientas como Jenkins y Docker. El proyecto automatiza el proceso de construcción, prueba y despliegue de una aplicación web, mejorando la eficiencia del equipo de desarrollo.',
+    problem: 'En muchos equipos de desarrollo, el proceso de despliegue manual puede ser propenso a errores y consume mucho tiempo. La falta de automatización puede llevar a retrasos en la entrega de nuevas funcionalidades y correcciones de errores.',
+    solution: 'Implementé un pipeline CI/CD que automatiza todo el proceso desde la construcción hasta el despliegue en producción. Esto reduce los errores humanos, acelera el tiempo de entrega y permite a los desarrolladores centrarse en escribir código en lugar de gestionar despliegues manuales. Utilicé Jenkins para orquestar el pipeline, Docker para contenerizar la aplicación y Git para el control de versiones. Como es local, configure Jenkins para que utilice un Trigger basado en polling del repositorio cada 2 minutos.',
+    technologies: ['Jenkins', 'Docker', 'Git', 'SolarQube', 'Java', 'SpringBoot'],
+    features: [
+      { icon: Server, title: 'Automatización Completa', desc: 'Pipeline que cubre desde la construcción hasta el despliegue.' },
+      { icon: Layout, title: 'Integración Continua', desc: 'Pruebas automáticas para asegurar la calidad del código.' },
+      { icon: Lock, title: 'Despliegue Seguro', desc: 'Despliegue automatizado con rollback en caso de fallos.' },
+    ],
+    githubUrl: 'https://github.com/fabrizzio178/DevOps-Practice',
+    image: imgDevOps,
+    demoLabel: 'UI de Jenkins'
   }
 ];
