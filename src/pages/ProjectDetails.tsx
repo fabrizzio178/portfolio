@@ -23,8 +23,6 @@ export default function ProjectDetails() {
   const project = projects.find((p) => p.id === id);
 
   useEffect(() => {
-    // Esto asegura que AL ENTRAR al proyecto vayas arriba.
-    // Al volver ATRAS, el navegador se encarga de restaurar la posición.
     window.scrollTo(0, 0);
   }, []);
 
@@ -46,15 +44,16 @@ export default function ProjectDetails() {
     setMousePos({ x, y });
   };
 
-  // --- CORRECCIÓN CLAVE AQUÍ ---
   const handleGoBack = () => {
-    // Verificamos si hay historial en el navegador (state.idx > 0 indica que no es la primera página)
     if (window.history.state && window.history.state.idx > 0) {
-      navigate(-1); // Esto vuelve atrás Y recupera el scroll exacto
+      navigate(-1); // El navegador se encarga del scroll aquí
     } else {
-      // Si no hay historial (ej: abriste el link directo), vamos al home manualmente
       navigate('/', { replace: true }); 
     }
+  };
+
+  const handleContactNavigation = () => {
+    navigate('/#contact'); 
   };
 
   if (!project) {
@@ -133,8 +132,7 @@ export default function ProjectDetails() {
         </div>
       )}
 
-      {/* --- BARRA DE NAVEGACIÓN FLOTANTE --- */}
-      {/* Subí el z-index a z-50 para asegurar que sea clickeable siempre */}
+      {/* --- Barra de nav flot --- */}
       <div className="sticky top-0 z-50 w-full border-b border-white/5 bg-slate-950/80 backdrop-blur-md">
           <div className="mx-auto max-w-4xl px-6 h-16 flex items-center">
             <button 
@@ -290,9 +288,12 @@ export default function ProjectDetails() {
                   <p className="mb-4 text-xs text-slate-400 leading-relaxed">
                     Estoy disponible para nuevos proyectos y colaboraciones. ¡Hablemos!
                   </p>
-                  <a href="mailto:fabrizziosana10@gmail.com" className="block w-full rounded-lg bg-white py-2 text-center text-xs sm:text-sm font-bold text-slate-950 transition-transform hover:scale-[1.02] active:scale-[0.98]">
+                  <button 
+                    onClick={handleContactNavigation}
+                    className="block w-full rounded-lg bg-white py-2 text-center text-xs sm:text-sm font-bold text-slate-950 transition-transform hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+                  >
                     Contactar ahora
-                  </a>
+                  </button>
               </div>
             </div>
           </aside>

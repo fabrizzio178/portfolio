@@ -38,7 +38,6 @@ export function Navbar() {
     useEffect(() => {
         if (location.pathname === '/' && location.state && (location.state as any).targetId) {
             const targetId = (location.state as any).targetId
-            // Pequeño timeout para asegurar que el DOM cargó
             setTimeout(() => {
                 const el = document.getElementById(targetId)
                 if (el) {
