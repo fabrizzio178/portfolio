@@ -155,12 +155,24 @@ export default function ProjectDetails() {
                     </button>
 
                     <div className="flex items-center gap-2">
-                        {/* BOTÓN CV AGREGADO */}
+                        {/* BOTÓN CV DESKTOP */}
                         <a
                             href="/cv.pdf"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-1.5 rounded-md border border-slate-700 bg-slate-800 px-3 py-1.5 text-sm text-slate-300 hover:border-slate-600 hover:text-slate-100 transition-colors"
+                            className="hidden sm:flex items-center gap-1.5 rounded-md border border-slate-700 bg-slate-800 px-3 py-1.5 text-sm text-slate-300 hover:border-slate-600 hover:text-slate-100 transition-colors"
+                        >
+                            <FileText className="h-4 w-4" />
+                            CV
+                        </a>
+
+                        {/* BOTÓN CV MOBILE */}
+                        <a
+                            href="/cv.pdf"
+                            download="Fabrizzio_Sana_CV.pdf"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex sm:hidden items-center gap-1.5 rounded-md border border-slate-700 bg-slate-800 px-3 py-1.5 text-sm text-slate-300 hover:border-slate-600 hover:text-slate-100 transition-colors"
                         >
                             <FileText className="h-4 w-4" />
                             CV
@@ -168,7 +180,7 @@ export default function ProjectDetails() {
 
                         <button
                             onClick={toggleLanguage}
-                            className="flex items-center cursor-pointer gap-1.5 rounded-md border border-slate-700 bg-slate-800 px-3 py-1.5 text-sm text-slate-300 hover:border-slate-600 hover:text-slate-100 transition-colors"
+                            className="flex items-center gap-1.5 rounded-md border border-slate-700 bg-slate-800 px-3 py-1.5 text-sm text-slate-300 hover:border-slate-600 hover:text-slate-100 transition-colors"
                         >
                             <Globe className="h-4 w-4" />
                             {language.toUpperCase()}

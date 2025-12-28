@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from '../../i18n';
-import { Globe, FileText } from 'lucide-react'; // Importar FileText
+import { Globe, FileText } from 'lucide-react';
 
 export function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -39,11 +39,9 @@ export function Navbar() {
         }
     };
 
-    // Este efecto maneja el scroll cuando volvemos de otra página
     useEffect(() => {
         if (location.pathname === '/' && location.state && (location.state as any).targetId) {
             const targetId = (location.state as any).targetId;
-            // Limpiamos el state para que no scrollee de nuevo si refrescamos
             window.history.replaceState({}, document.title);
             
             setTimeout(() => {
@@ -89,7 +87,6 @@ export function Navbar() {
                         </button>
                     ))}
                     
-                    {/* Botón CV Desktop */}
                     <a
                         href="/cv.pdf"
                         target="_blank"
@@ -110,7 +107,6 @@ export function Navbar() {
                     </button>
                 </div>
 
-                {/* MOBILE MENU TOGGLE */}
                 <div className="flex items-center gap-2 md:hidden">
                     <button
                         onClick={toggleLanguage}
@@ -135,7 +131,6 @@ export function Navbar() {
                 </div>
             </nav>
 
-            {/* MOBILE MENU DROPDOWN */}
             {isOpen && (
                 <div className="border-t border-slate-800 bg-slate-900 px-4 py-4 md:hidden">
                     <div className="flex flex-col gap-1">
@@ -148,9 +143,9 @@ export function Navbar() {
                                 {link.label}
                             </button>
                         ))}
-                        {/* Botón CV Mobile */}
                         <a
                             href="/cv.pdf"
+                            download="Fabrizzio_Sana_CV.pdf"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="rounded-md p-3 text-left text-slate-300 hover:bg-slate-800 hover:text-slate-100 transition-colors flex items-center gap-2"

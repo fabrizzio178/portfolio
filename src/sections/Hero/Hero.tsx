@@ -31,29 +31,46 @@ export function Hero() {
                         {t.hero.description}
                     </p>
 
-                    <div className="mt-8 flex flex-wrap gap-4">
-                        <Button onClick={handleScrollToProjects} className="gap-2 cursor-pointer">
+                    <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+                        <Button 
+                            onClick={handleScrollToProjects} 
+                            className="gap-2 cursor-pointer w-full justify-center sm:w-auto"
+                        >
                             {t.hero.cta.projects}
                             <ArrowRight className="h-4 w-4" />
                         </Button>
                         
-                        <Button variant="subtle" href="#contact">
+                        <Button 
+                            variant="subtle" 
+                            href="#contact"
+                            className="w-full justify-center sm:w-auto"
+                        >
                             {t.hero.cta.contact}
                         </Button>
 
-                        {/* BOTÓN CV */}
                         <a 
                             href="/cv.pdf" 
-                            target="_blank"
+                            target="_blank" 
                             rel="noopener noreferrer"
-                            className="flex items-center gap-2 rounded-lg border border-slate-700 px-6 py-3 text-sm font-semibold text-slate-300 transition-all hover:border-slate-500 hover:text-white hover:bg-slate-800"
+                            className="hidden sm:flex items-center justify-center gap-2 rounded-lg border border-slate-700 px-6 py-3 text-sm font-semibold text-slate-300 transition-all hover:border-slate-500 hover:text-white hover:bg-slate-800"
                         >
                             <FileText className="h-4 w-4" />
                             CV
                         </a>
+
+                        <a 
+                            href="/cv.pdf" 
+                            download="Fabrizzio_Sana_CV.pdf"
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="flex sm:hidden items-center justify-center gap-2 rounded-lg border border-slate-700 px-6 py-3 text-sm font-semibold text-slate-300 transition-all hover:border-slate-500 hover:text-white hover:bg-slate-800 w-full"
+                        >
+                            <FileText className="h-4 w-4" />
+                            Descargar CV
+                        </a>
                     </div>
 
-                    <div className="mt-12 flex items-center gap-6 text-sm text-slate-500">
+                    <div className="mt-12 flex flex-wrap items-center gap-4 text-sm text-slate-500 sm:gap-6">
                         <div className="flex items-center gap-2">
                             <span className="h-2 w-2 rounded-full bg-emerald-500"></span>
                             <span>Java / Spring Boot</span>
