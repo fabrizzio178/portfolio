@@ -1,7 +1,9 @@
 import { BrowserRouter, Routes, Route, Outlet, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
+import { LanguageProvider } from './i18n';
 import { Navbar } from './components/Navbar/Navbar';
 import { Hero } from './sections/Hero/Hero';
+import { TechStack } from './sections/TechStack/TechStack';
 import { About } from './sections/About/About';
 import { Projects } from './sections/Projects/Projects';
 import { Contact } from './sections/Contact/Contact';
@@ -10,7 +12,7 @@ import ProjectDetails from './pages/ProjectDetails';
 
 function Layout() {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-50">
+    <div className="min-h-screen bg-slate-900 text-slate-100">
       <Navbar />
       <Outlet />
       <Footer />
@@ -33,8 +35,9 @@ function Home() {
   }, [hash]);
 
   return (
-    <main className="mx-auto flex w-full max-w-6xl flex-col gap-24 px-4 pb-28 pt-16 sm:gap-28 sm:px-6 lg:px-8">
+    <main>
       <Hero />
+      <TechStack />
       <About />
       <Projects />
       <Contact />
@@ -44,13 +47,15 @@ function Home() {
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/project/:id" element={<ProjectDetails />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <LanguageProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/project/:id" element={<ProjectDetails />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </LanguageProvider>
   );
 }

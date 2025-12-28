@@ -1,0 +1,90 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Sobre mí",
+    "stack": "Stack",
+    "projects": "Proyectos",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "greeting": "Hola, soy",
+    "name": "Fabrizzio",
+    "role": "Software Engineer | Backend Developer",
+    "tagline": "Ingeniería de Backend sólida e infraestructura automatizada.",
+    "description": "Especialista en el ecosistema Java Spring y Sistemas Distribuidos. Conecto lógica backend compleja con infraestructura DevOps resiliente.",
+    "cta": {
+      "projects": "Ver proyectos",
+      "contact": "Hablemos"
+    }
+  },
+  "stack": {
+    "eyebrow": "Capacidad Técnica",
+    "title": "Stack de Ingeniería",
+    "subtitle": "Herramientas y metodologías preferidas para construir sistemas distribuidos de alto rendimiento y tolerancia a fallos.",
+    "primary": "Ingeniería Core",
+    "infrastructure": "Arquitectura Cloud y DevOps",
+    "familiar": "Workflow & Calidad"
+  },
+  "about": {
+    "eyebrow": "Sobre mí",
+    "title": "Impulsado por la Excelencia Técnica",
+    "p1": "Soy desarrollador backend con enfoque en Java y Spring Boot, complementado con experiencia en Node.js. Me apasiona cómo la buena ingeniería puede transformar ideas en productos escalables.",
+    "p2": "Actualmente me encuentro realizando la tesis como Analista en Sistemas. Me dio una base sólida en arquitectura de software, bases de datos, buenas prácticas de desarrollo y metodologías ágiles. Aplico estos conocimientos en cada proyecto, priorizando código limpio y soluciones bien estructuradas.",
+    "p3": "Tengo experiencia práctica con Docker, CI/CD pipelines y servicios de AWS. Entiendo que el buen código es solo una parte: el despliegue, monitoreo y mantenimiento son igual de importantes.",
+    "focus": {
+      "title": "Mi enfoque",
+      "items": [
+        "Arquitectura de microservicios",
+        "APIs bien documentadas (y diseñadas)",
+        "Testing y código mantenible",
+        "Containerización con Docker",
+        "Integración y despliegue continuo"
+      ]
+    }
+  },
+  "projects": {
+    "eyebrow": "Portafolio",
+    "title": "Trabajos Seleccionados",
+    "subtitle": "Soluciones reales que demuestran complejidad arquitectónica y valor de negocio.",
+    "viewProject": "Ver proyecto",
+    "sourceCode": "Repositorio",
+    "liveDemo": "Demo"
+  },
+  "projectDetail": {
+    "backToProjects": "Volver a proyectos",
+    "architecture": "Arquitectura del Sistema",
+    "problem": "El Desafío",
+    "solution": "La Solución",
+    "features": "Características Técnicas",
+    "techStack": "Stack Tecnológico",
+    "links": "Recursos",
+    "viewCode": "Ver código",
+    "viewDemo": "Ver demo",
+    "gallery": "Galería del Proyecto"
+  },
+  "contact": {
+    "eyebrow": "Contacto",
+    "title": "Hablemos",
+    "subtitle": "¿Tenés un proyecto en mente o querés charlar sobre oportunidades? Escribime.",
+    "form": {
+      "name": "Nombre",
+      "email": "Email",
+      "message": "Mensaje",
+      "send": "Enviar mensaje",
+      "sending": "Enviando...",
+      "success": "¡Mensaje enviado! Te responderé pronto.",
+      "error": "Hubo un error. Por favor contactame vía LinkedIn."
+    },
+    "direct": {
+      "title": "Contacto directo",
+      "email": "Email",
+      "linkedin": "LinkedIn",
+      "github": "GitHub"
+    },
+    "availability": "Disponible para oportunidades laborales"
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados.",
+    "builtWith": "Construido con React y TypeScript"
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "stack": "Stack",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Hi, I'm",
+    "name": "Fabrizzio",
+    "role": "Software Engineer | Backend Developer",
+    "tagline": "Architecting scalable, cloud-native backend solutions.",
+    "description": "Specialized in the Java Spring ecosystem and Distributed Systems. I bridge the gap between complex backend logic and resilient DevOps infrastructure.",
+    "cta": {
+      "projects": "View projects",
+      "contact": "Let's Talk"
+    }
+  },
+  "stack": {
+    "eyebrow": "Technical Proficiency",
+    "title": "Engineering Stack",
+    "subtitle": "A curated toolkit for building high-performance, fault-tolerant distributed systems.",
+    "primary": "Core Engineering",
+    "infrastructure": "Cloud & DevOps Architecture",
+    "familiar": "Workflow & Quality"
+  },
+  "about": {
+    "eyebrow": "About me",
+    "title": "Driven by Engineering Excellence",
+    "p1": "I'm a backend developer focused on Java and Spring Boot, complemented with Node.js experience. I'm passionate about designing systems that scale and remain maintainable.",
+    "p2": "My training as a Systems Analyst gave me a solid foundation in software architecture, databases, and development best practices. I apply this knowledge to every project, prioritizing clean code and well-structured solutions.",
+    "p3": "I have hands-on experience with Docker, CI/CD pipelines, and AWS services. I understand that good code is just one part: deployment, monitoring, and maintenance are equally important.",
+    "focus": {
+      "title": "My focus",
+      "items": [
+        "Microservices architecture",
+        "Well-documented APIs",
+        "Automated CI/CD Pipelines & DevOps",
+        "Containerization with Docker",
+        "Cloud Infrastructure Integration (AWS)"
+      ]
+    }
+  },
+  "projects": {
+    "eyebrow": "Portfolio",
+    "title": "Selected Work",
+    "subtitle": "Real-world solutions demonstrating architectural complexity and business value.",
+    "viewProject": "View project",
+    "sourceCode": "Repository",
+    "liveDemo": "Live Demo"
+  },
+  "projectDetail": {
+    "backToProjects": "Back to overview",
+    "architecture": "System Architecture",
+    "problem": "The Challenge",
+    "solution": "The Solution",
+    "features": "Key Technical Features",
+    "techStack": "Technology Stack",
+    "links": "Links",
+    "viewCode": "View code",
+    "viewDemo": "View demo",
+    "gallery": "Project Gallery"
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Let's talk",
+    "subtitle": "Have a project in mind or want to discuss opportunities? Reach out.",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "send": "Send message",
+      "sending": "Sending...",
+      "success": "Message sent! I'll get back to you soon.",
+      "error": "There was an error. Please reach out via LinkedIn."
+    },
+    "direct": {
+      "title": "Connect",
+      "email": "Email",
+      "linkedin": "LinkedIn",
+      "github": "GitHub"
+    },
+    "availability": "Available for job opportunities"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "builtWith": "Built with React and TypeScript"
+  }
+}
