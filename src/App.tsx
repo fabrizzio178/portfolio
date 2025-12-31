@@ -8,6 +8,7 @@ import { About } from './sections/About/About';
 import { Projects } from './sections/Projects/Projects';
 import { Contact } from './sections/Contact/Contact';
 import { Footer } from './components/Footer/Footer';
+import { Analytics } from '@vercel/analytics/react';
 import ProjectDetails from './pages/ProjectDetails';
 
 function Layout() {
@@ -16,6 +17,7 @@ function Layout() {
       <Navbar />
       <Outlet />
       <Footer />
+      <Analytics />
     </div>
   );
 }
