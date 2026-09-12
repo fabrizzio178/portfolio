@@ -11,13 +11,13 @@ export function SectionTitle({ eyebrow, title, subtitle, align = 'left' }: Secti
     return (
         <div className={`flex flex-col gap-4 ${alignment}`}>
             {eyebrow && (
-                <span className="text-sm font-medium uppercase tracking-wider text-blue-400">
+                <span className="font-mono text-xs font-medium uppercase tracking-[0.2em] text-ember-400">
                     {eyebrow}
                 </span>
             )}
-            <h2 className="text-3xl font-bold text-slate-50 sm:text-4xl">{title}</h2>
+            <h2 className="text-3xl font-semibold text-ink-50 sm:text-4xl">{title}</h2>
             {subtitle && (
-                <p className="max-w-2xl text-lg text-slate-400">{subtitle}</p>
+                <p className="max-w-2xl text-lg text-ink-300">{subtitle}</p>
             )}
         </div>
     );

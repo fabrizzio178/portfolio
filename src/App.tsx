@@ -5,6 +5,7 @@ import { Navbar } from './components/Navbar/Navbar';
 import { Hero } from './sections/Hero/Hero';
 import { TechStack } from './sections/TechStack/TechStack';
 import { About } from './sections/About/About';
+import { Experience } from './sections/Experience/Experience';
 import { Projects } from './sections/Projects/Projects';
 import { Contact } from './sections/Contact/Contact';
 import { Footer } from './components/Footer/Footer';
@@ -13,7 +14,7 @@ import ProjectDetails from './pages/ProjectDetails';
 
 function Layout() {
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-100">
+    <div className="min-h-screen bg-ink-950 text-ink-100">
       <Navbar />
       <Outlet />
       <Footer />
@@ -39,8 +40,9 @@ function Home() {
   return (
     <main>
       <Hero />
-      <TechStack />
       <About />
+      <Experience />
+      <TechStack />
       <Projects />
       <Contact />
     </main>

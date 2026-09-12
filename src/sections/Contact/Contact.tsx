@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { SectionTitle } from '../../components/SectionTitle/SectionTitle';
+import { Reveal } from '../../components/Reveal/Reveal';
 import { Button } from '../../components/UI/Button';
 import { Mail, Linkedin, Github, Send, CheckCircle2, Loader2, AlertCircle } from 'lucide-react';
 import { useTranslation } from '../../i18n';
@@ -65,17 +66,20 @@ export function Contact() {
     return (
         <section id="contact" className="scroll-mt-20 py-20 sm:py-28">
             <div className="section-container">
-                <SectionTitle
-                    eyebrow={t.contact.eyebrow}
-                    title={t.contact.title}
-                    subtitle={t.contact.subtitle}
-                />
+                <Reveal>
+                    <SectionTitle
+                        eyebrow={t.contact.eyebrow}
+                        title={t.contact.title}
+                        subtitle={t.contact.subtitle}
+                    />
+                </Reveal>
 
                 <div className="mt-12 grid gap-12 lg:grid-cols-2">
-                    <form className="space-y-6" onSubmit={handleSubmit}>
+                    <Reveal delay={0.1}>
+                        <form className="space-y-6" onSubmit={handleSubmit}>
                         <div className="grid gap-6 sm:grid-cols-2">
                             <label className="block">
-                                <span className="text-sm font-medium text-slate-300">
+                                <span className="text-sm font-medium text-ink-200">
                                     {t.contact.form.name}
                                 </span>
                                 <input
@@ -84,11 +88,11 @@ export function Contact() {
                                     value={form.name}
                                     onChange={handleChange}
                                     required
-                                    className="mt-2 block w-full rounded-lg border border-slate-700 bg-slate-800 px-4 py-3 text-slate-100 placeholder-slate-500 focus:border-blue-500 focus:outline-none transition-colors"
+                                    className="mt-2 block w-full rounded-lg border border-ink-700 bg-ink-900/60 px-4 py-3 text-ink-100 placeholder-ink-500 focus:border-ember-500 focus:outline-none transition-colors"
                                 />
                             </label>
                             <label className="block">
-                                <span className="text-sm font-medium text-slate-300">
+                                <span className="text-sm font-medium text-ink-200">
                                     {t.contact.form.email}
                                 </span>
                                 <input
@@ -97,13 +101,13 @@ export function Contact() {
                                     value={form.email}
                                     onChange={handleChange}
                                     required
-                                    className="mt-2 block w-full rounded-lg border border-slate-700 bg-slate-800 px-4 py-3 text-slate-100 placeholder-slate-500 focus:border-blue-500 focus:outline-none transition-colors"
+                                    className="mt-2 block w-full rounded-lg border border-ink-700 bg-ink-900/60 px-4 py-3 text-ink-100 placeholder-ink-500 focus:border-ember-500 focus:outline-none transition-colors"
                                 />
                             </label>
                         </div>
 
                         <label className="block">
-                            <span className="text-sm font-medium text-slate-300">
+                            <span className="text-sm font-medium text-ink-200">
                                 {t.contact.form.message}
                             </span>
                             <textarea
@@ -112,7 +116,7 @@ export function Contact() {
                                 value={form.message}
                                 onChange={handleChange}
                                 required
-                                className="mt-2 block w-full rounded-lg border border-slate-700 bg-slate-800 px-4 py-3 text-slate-100 placeholder-slate-500 focus:border-blue-500 focus:outline-none transition-colors resize-none"
+                                className="mt-2 block w-full rounded-lg border border-ink-700 bg-ink-900/60 px-4 py-3 text-ink-100 placeholder-ink-500 focus:border-ember-500 focus:outline-none transition-colors resize-none"
                             />
                         </label>
 
@@ -147,19 +151,20 @@ export function Contact() {
                                 {t.contact.form.error}
                             </div>
                         )}
-                    </form>
+                        </form>
+                    </Reveal>
 
-                    <div className="space-y-8">
+                    <Reveal delay={0.2} className="space-y-8">
                         <div>
-                            <h3 className="mb-6 text-sm font-semibold uppercase tracking-wider text-slate-400">
+                            <h3 className="mb-6 text-sm font-semibold uppercase tracking-wider text-ink-400">
                                 {t.contact.direct.title}
                             </h3>
                             <div className="space-y-4">
                                 <a
                                     href="mailto:fabrizziosana10@gmail.com"
-                                    className="flex items-center gap-4 text-slate-300 hover:text-slate-100 transition-colors"
+                                    className="flex items-center gap-4 text-ink-200 hover:text-ink-50 transition-colors"
                                 >
-                                    <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-700 bg-slate-800">
+                                    <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-ink-700 bg-ink-800/60">
                                         <Mail className="h-5 w-5" />
                                     </div>
                                     <span>fabrizziosana10@gmail.com</span>
@@ -168,9 +173,9 @@ export function Contact() {
                                     href="https://linkedin.com/in/fabrizzio-sana-54511630b"
                                     target="_blank"
                                     rel="noreferrer"
-                                    className="flex items-center gap-4 text-slate-300 hover:text-slate-100 transition-colors"
+                                    className="flex items-center gap-4 text-ink-200 hover:text-ink-50 transition-colors"
                                 >
-                                    <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-700 bg-slate-800">
+                                    <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-ink-700 bg-ink-800/60">
                                         <Linkedin className="h-5 w-5" />
                                     </div>
                                     <span>LinkedIn</span>
@@ -179,9 +184,9 @@ export function Contact() {
                                     href="https://github.com/fabrizzio178"
                                     target="_blank"
                                     rel="noreferrer"
-                                    className="flex items-center gap-4 text-slate-300 hover:text-slate-100 transition-colors"
+                                    className="flex items-center gap-4 text-ink-200 hover:text-ink-50 transition-colors"
                                 >
-                                    <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-700 bg-slate-800">
+                                    <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-ink-700 bg-ink-800/60">
                                         <Github className="h-5 w-5" />
                                     </div>
                                     <span>@fabrizzio178</span>
@@ -189,13 +194,13 @@ export function Contact() {
                             </div>
                         </div>
 
-                        <div className="rounded-lg border border-slate-700 bg-slate-800/50 p-6">
+                        <div className="rounded-lg border border-ink-700 bg-ink-900/40 p-6">
                             <div className="flex items-center gap-2 text-emerald-400">
                                 <span className="h-2 w-2 rounded-full bg-emerald-500"></span>
                                 <span className="text-sm font-medium">{t.contact.availability}</span>
                             </div>
                         </div>
-                    </div>
+                    </Reveal>
                 </div>
             </div>
         </section>

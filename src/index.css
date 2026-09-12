@@ -1,13 +1,39 @@
 @import "tailwindcss";
 
+@theme {
+  --color-ink-50: #f4f5f6;
+  --color-ink-100: #e7e9eb;
+  --color-ink-200: #cbd0d4;
+  --color-ink-300: #a4acb3;
+  --color-ink-400: #767f87;
+  --color-ink-500: #545c63;
+  --color-ink-600: #383e43;
+  --color-ink-700: #26292d;
+  --color-ink-800: #1a1c1f;
+  --color-ink-900: #101214;
+  --color-ink-950: #08090a;
+
+  --color-ember-50: #fff1ea;
+  --color-ember-100: #ffdfcc;
+  --color-ember-200: #ffb98f;
+  --color-ember-300: #ff9a5e;
+  --color-ember-400: #ff7a33;
+  --color-ember-500: #f2622a;
+  --color-ember-600: #d14f1e;
+  --color-ember-700: #a83e17;
+  --color-ember-800: #7c2e11;
+  --color-ember-900: #56200b;
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+
 @layer base {
   :root {
-    --color-primary: #3b82f6;
-    --color-primary-dark: #2563eb;
-    --color-accent: #10b981;
-    color: #e2e8f0;
-    background-color: #0f172a;
-    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--color-ink-100);
+    background-color: var(--color-ink-950);
+    font-family: var(--font-sans);
     scroll-behavior: smooth;
   }
 
@@ -15,7 +41,12 @@
     margin: 0;
     min-height: 100vh;
     overflow-x: hidden;
-    background-color: #0f172a;
+    background-color: var(--color-ink-950);
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
   }
 
   ::-webkit-scrollbar {
@@ -23,21 +54,21 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: #0f172a;
+    background: var(--color-ink-950);
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #334155;
+    background: var(--color-ink-700);
     border-radius: 999px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #475569;
+    background: var(--color-ink-600);
   }
 
   ::selection {
-    background-color: rgba(59, 130, 246, 0.3);
-    color: #f8fafc;
+    background-color: rgba(242, 98, 42, 0.35);
+    color: var(--color-ink-50);
   }
 }
 
@@ -47,14 +78,22 @@
   }
 
   .card {
-    @apply bg-slate-800/50 border border-slate-700/50 rounded-lg;
+    @apply bg-ink-900/60 border border-ink-700/60 rounded-xl;
   }
 
   .card-hover {
-    @apply hover:border-slate-600 hover:bg-slate-800/70 transition-all duration-200;
+    @apply hover:border-ember-700/60 hover:bg-ink-800/70 transition-all duration-300;
   }
 
   .text-gradient {
-    @apply bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-ember-300 via-ember-500 to-ember-700 bg-clip-text text-transparent;
+  }
+
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-mono {
+    font-family: var(--font-mono);
   }
 }

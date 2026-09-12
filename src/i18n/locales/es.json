@@ -2,6 +2,7 @@
   "nav": {
     "home": "Inicio",
     "about": "Sobre mí",
+    "experience": "Experiencia",
     "stack": "Stack",
     "projects": "Proyectos",
     "contact": "Contacto"
@@ -9,9 +10,9 @@
   "hero": {
     "greeting": "Hola, soy",
     "name": "Fabrizzio",
-    "role": "Software Engineer | Backend Developer",
-    "tagline": "Ingeniería de Backend sólida e infraestructura automatizada.",
-    "description": "Especialista en el ecosistema Java Spring y Sistemas Distribuidos. Conecto lógica backend compleja con infraestructura DevOps resiliente.",
+    "role": "Software Engineer | Backend & Automatización con IA",
+    "tagline": "Sistemas distribuidos, workflows de agentes, automatización real.",
+    "description": "Diseño sistemas backend y automatización con IA — desde servicios en Python/NestJS sobre AWS y Azure hasta workflows de agentes con LangChain y LangGraph. Me muevo cómodo entre arquitectura de sistemas y automatización que llega a producción.",
     "cta": {
       "projects": "Ver proyectos",
       "contact": "Hablemos"
@@ -20,27 +21,35 @@
   "stack": {
     "eyebrow": "Capacidad Técnica",
     "title": "Stack de Ingeniería",
-    "subtitle": "Herramientas y metodologías preferidas para construir sistemas distribuidos de alto rendimiento y tolerancia a fallos.",
+    "subtitle": "Ingeniería backend, automatización con IA, y las prácticas de cloud/arquitectura que sostienen todo en producción.",
     "primary": "Ingeniería Core",
-    "infrastructure": "Arquitectura Cloud y DevOps",
-    "familiar": "Workflow & Calidad"
+    "ai": "IA y Automatización",
+    "infrastructure": "Cloud e Infraestructura",
+    "familiar": "Sistemas y Arquitectura"
   },
   "about": {
     "eyebrow": "Sobre mí",
     "title": "Impulsado por la Excelencia Técnica",
-    "p1": "Soy desarrollador backend con enfoque en Java y Spring Boot, complementado con experiencia en Node.js. Me apasiona cómo la buena ingeniería puede transformar ideas en productos escalables.",
-    "p2": "Actualmente me encuentro realizando la tesis como Analista en Sistemas. Me dio una base sólida en arquitectura de software, bases de datos, buenas prácticas de desarrollo y metodologías ágiles. Aplico estos conocimientos en cada proyecto, priorizando código limpio y soluciones bien estructuradas.",
-    "p3": "Tengo experiencia práctica con Docker, CI/CD pipelines y servicios de AWS. Entiendo que el buen código es solo una parte: el despliegue, monitoreo y mantenimiento son igual de importantes.",
+    "p1": "Soy backend developer enfocado hoy en automatización con IA — actualmente construyo workflows de agentes y pipelines de automatización en Python y NestJS. Mi base viene del ecosistema Java/Spring, que moldeó cómo pienso la arquitectura limpia y los sistemas mantenibles.",
+    "p2": "Soy Analista en Sistemas. Me encuentro en 4to año de ingeniería, proximo a recibirme como Licenciado en Inteligencia Artificial y como Ingeniero en Sistemas. Me dio una base sólida en arquitectura de software, bases de datos, buenas prácticas de desarrollo y metodologías ágiles. Aplico estos conocimientos en cada proyecto, priorizando código limpio y soluciones bien estructuradas.",
+    "p3": "Tengo experiencia práctica con Docker, CI/CD pipelines y servicios cloud en AWS y Azure. Entiendo que el buen código es solo una parte: el despliegue, monitoreo y mantenimiento son igual de importantes.",
     "focus": {
       "title": "Mi enfoque",
       "items": [
-        "Arquitectura de microservicios",
-        "APIs bien documentadas (y diseñadas)",
-        "Testing y código mantenible",
-        "Containerización con Docker",
-        "Integración y despliegue continuo"
+        "Arquitectura de microservicios y sistemas distribuidos",
+        "Workflows de agentes con IA (LangChain / LangGraph)",
+        "Pipelines de CI/CD automatizados y DevOps",
+        "Infraestructura cloud (AWS y Azure)",
+        "MCPs (Model Context Protocol) productivos"
       ]
     }
+  },
+  "experience": {
+    "eyebrow": "Carrera",
+    "title": "Experiencia",
+    "subtitle": "Dónde apliqué ingeniería y automatización a problemas reales, en producción.",
+    "current": "Actual",
+    "note": "Antes de esto, mi experiencia práctica vino de proyectos universitarios y desarrollos propios — podés verlos en la sección de Proyectos."
   },
   "projects": {
     "eyebrow": "Portafolio",

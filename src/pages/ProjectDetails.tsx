@@ -17,7 +17,7 @@ export default function ProjectDetails() {
     const { id } = useParams();
     const navigate = useNavigate();
     const { language, setLanguage, t } = useTranslation();
-    
+
     const [lightboxOpen, setLightboxOpen] = useState(false);
     const [lightboxIndex, setLightboxIndex] = useState(0);
     const [activeSlide, setActiveSlide] = useState(0);
@@ -47,13 +47,40 @@ export default function ProjectDetails() {
         setLanguage(language === 'es' ? 'en' : 'es');
     };
 
+    const allMedia = [
+        ...(project?.images ? project.images.map(url => ({ type: 'image' as const, url })) : []),
+        ...(project?.arcImage ? [{ type: 'image' as const, url: project.arcImage, isArchitecture: true }] : []),
+        ...(project?.media || []),
+    ];
+
+    const nextLightbox = () => {
+        setLightboxIndex((prev) => (prev + 1) % allMedia.length);
+    };
+
+    const prevLightbox = () => {
+        setLightboxIndex((prev) => (prev - 1 + allMedia.length) % allMedia.length);
+    };
+
+    useEffect(() => {
+        if (!lightboxOpen) return;
+
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') setLightboxOpen(false);
+            if (e.key === 'ArrowRight') nextLightbox();
+            if (e.key === 'ArrowLeft') prevLightbox();
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [lightboxOpen, allMedia.length]);
+
     if (!project) {
         return (
-            <div className="flex h-screen flex-col items-center justify-center gap-4 text-slate-400">
+            <div className="flex h-screen flex-col items-center justify-center gap-4 text-ink-300">
                 <p className="text-lg">Project not found.</p>
                 <button
                     onClick={() => navigate('/')}
-                    className="text-blue-400 underline hover:text-blue-300"
+                    className="text-ember-400 underline hover:text-ember-300"
                 >
                     Go back
                 </button>
@@ -67,25 +94,11 @@ export default function ProjectDetails() {
     const solution = project.solution[language];
     const demoLabel = project.demoLabel?.[language];
 
-    const allMedia = [
-        ...(project.images ? project.images.map(url => ({ type: 'image' as const, url })) : []),
-        ...(project.arcImage ? [{ type: 'image' as const, url: project.arcImage, isArchitecture: true }] : []),
-        ...(project.media || []),
-    ];
-
     const embedUrl = project.demoUrl ? getEmbedUrl(project.demoUrl) : null;
 
     const openLightbox = (index: number) => {
         setLightboxIndex(index);
         setLightboxOpen(true);
-    };
-
-    const nextLightbox = () => {
-        setLightboxIndex((prev) => (prev + 1) % allMedia.length);
-    };
-
-    const prevLightbox = () => {
-        setLightboxIndex((prev) => (prev - 1 + allMedia.length) % allMedia.length);
     };
 
     const nextSlide = (e: React.MouseEvent) => {
@@ -99,15 +112,16 @@ export default function ProjectDetails() {
     };
 
     return (
-        <article className="min-h-screen pb-24 bg-slate-950">
+        <article className="min-h-screen pb-24 bg-ink-950">
             {lightboxOpen && allMedia[lightboxIndex] && (
                 <div
                     className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95"
                     onClick={() => setLightboxOpen(false)}
                 >
                     <button
-                        className="absolute top-6 right-6 rounded-full bg-slate-800 p-2 text-white hover:bg-slate-700"
+                        className="absolute top-6 right-6 rounded-full bg-ink-800 p-2 text-white hover:bg-ink-700"
                         onClick={() => setLightboxOpen(false)}
+                        aria-label="Close"
                     >
                         <X className="h-6 w-6" />
                     </button>
@@ -115,20 +129,22 @@ export default function ProjectDetails() {
                     {allMedia.length > 1 && (
                         <>
                             <button
-                                className="absolute left-6 rounded-full bg-slate-800 p-2 text-white hover:bg-slate-700"
+                                className="absolute left-6 rounded-full bg-ink-800 p-2 text-white hover:bg-ink-700"
                                 onClick={(e) => {
                                     e.stopPropagation();
                                     prevLightbox();
                                 }}
+                                aria-label="Previous image"
                             >
                                 <ChevronLeft className="h-6 w-6" />
                             </button>
                             <button
-                                className="absolute right-6 rounded-full bg-slate-800 p-2 text-white hover:bg-slate-700"
+                                className="absolute right-6 rounded-full bg-ink-800 p-2 text-white hover:bg-ink-700"
                                 onClick={(e) => {
                                     e.stopPropagation();
                                     nextLightbox();
                                 }}
+                                aria-label="Next image"
                             >
                                 <ChevronRight className="h-6 w-6" />
                             </button>
@@ -144,35 +160,33 @@ export default function ProjectDetails() {
                 </div>
             )}
 
-            <div className="sticky top-0 z-50 border-b border-slate-800 bg-slate-900/95 backdrop-blur-sm">
+            <div className="sticky top-0 z-50 border-b border-ink-800 bg-ink-950/95 backdrop-blur-sm">
                 <div className="section-container flex h-16 items-center justify-between">
                     <button
                         onClick={handleGoBack}
-                        className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-slate-200 transition-colors"
+                        className="inline-flex items-center gap-2 text-sm text-ink-300 hover:text-ink-100 transition-colors"
                     >
                         <ArrowLeft className="h-4 w-4" />
                         {t.projectDetail.backToProjects}
                     </button>
 
                     <div className="flex items-center gap-2">
-                        {/* BOTÓN CV DESKTOP */}
                         <a
                             href="/cv.pdf"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hidden sm:flex items-center gap-1.5 rounded-md border border-slate-700 bg-slate-800 px-3 py-1.5 text-sm text-slate-300 hover:border-slate-600 hover:text-slate-100 transition-colors"
+                            className="hidden sm:flex items-center gap-1.5 rounded-md border border-ink-700 bg-ink-800/60 px-3 py-1.5 text-sm text-ink-200 hover:border-ink-500 hover:text-ink-50 transition-colors"
                         >
                             <FileText className="h-4 w-4" />
                             CV
                         </a>
 
-                        {/* BOTÓN CV MOBILE */}
                         <a
                             href="/cv.pdf"
                             download="Fabrizzio_Sana_CV.pdf"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex sm:hidden items-center gap-1.5 rounded-md border border-slate-700 bg-slate-800 px-3 py-1.5 text-sm text-slate-300 hover:border-slate-600 hover:text-slate-100 transition-colors"
+                            className="flex sm:hidden items-center gap-1.5 rounded-md border border-ink-700 bg-ink-800/60 px-3 py-1.5 text-sm text-ink-200 hover:border-ink-500 hover:text-ink-50 transition-colors"
                         >
                             <FileText className="h-4 w-4" />
                             CV
@@ -180,7 +194,7 @@ export default function ProjectDetails() {
 
                         <button
                             onClick={toggleLanguage}
-                            className="flex items-center gap-1.5 rounded-md border border-slate-700 bg-slate-800 px-3 py-1.5 text-sm text-slate-300 hover:border-slate-600 hover:text-slate-100 transition-colors"
+                            className="flex items-center gap-1.5 rounded-md border border-ink-700 bg-ink-800/60 px-3 py-1.5 text-sm text-ink-200 hover:border-ink-500 hover:text-ink-50 transition-colors"
                         >
                             <Globe className="h-4 w-4" />
                             {language.toUpperCase()}
@@ -192,18 +206,18 @@ export default function ProjectDetails() {
             <div className="section-container pt-12">
                 <header className="mb-12">
                     <div className="mb-4 flex flex-wrap items-center gap-3 text-sm">
-                        <span className="rounded-full bg-blue-500/10 px-3 py-1 text-blue-400 font-medium">
+                        <span className="rounded-full bg-ember-500/10 px-3 py-1 text-ember-400 font-medium font-mono">
                             Case Study
                         </span>
-                        <span className="text-slate-600">•</span>
-                        <span className="text-slate-400">{project.technologies[0]}</span>
+                        <span className="text-ink-600">•</span>
+                        <span className="text-ink-400">{project.technologies[0]}</span>
                     </div>
 
-                    <h1 className="text-3xl font-bold text-slate-50 sm:text-4xl lg:text-5xl">
+                    <h1 className="text-3xl font-semibold text-ink-50 sm:text-4xl lg:text-5xl">
                         {title}
                     </h1>
 
-                    <p className="mt-4 text-lg text-slate-400 max-w-3xl">
+                    <p className="mt-4 text-lg text-ink-300 max-w-3xl">
                         {shortDescription}
                     </p>
 
@@ -235,11 +249,11 @@ export default function ProjectDetails() {
                 </header>
 
                 {(embedUrl || allMedia.length > 0) && (
-                    <div className="mb-16 overflow-hidden rounded-lg border border-slate-700 bg-slate-900">
+                    <div className="mb-16 overflow-hidden rounded-xl border border-ink-700 bg-ink-900">
                         {embedUrl ? (
                             <div className="relative">
                                 <div className="absolute top-4 left-4 z-10 flex items-center gap-2 rounded-full bg-black/70 px-3 py-1 text-xs text-white">
-                                    <PlayCircle className="h-3 w-3 text-red-500" />
+                                    <PlayCircle className="h-3 w-3 text-ember-400" />
                                     Video Demo
                                 </div>
                                 <div className="aspect-video">
@@ -253,8 +267,8 @@ export default function ProjectDetails() {
                                 </div>
                             </div>
                         ) : (
-                            <div className="relative group bg-slate-950 flex items-center justify-center">
-                                <div 
+                            <div className="relative group bg-ink-950 flex items-center justify-center">
+                                <div
                                     className="h-[400px] sm:h-[500px] w-full flex items-center justify-center cursor-pointer p-4"
                                     onClick={() => openLightbox(activeSlide)}
                                 >
@@ -272,22 +286,24 @@ export default function ProjectDetails() {
 
                                 {allMedia.length > 1 && (
                                     <>
-                                        <button 
+                                        <button
                                             onClick={prevSlide}
                                             className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-2 text-white opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/70"
+                                            aria-label="Previous"
                                         >
                                             <ChevronLeft className="h-6 w-6" />
                                         </button>
-                                        <button 
+                                        <button
                                             onClick={nextSlide}
                                             className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-2 text-white opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/70"
+                                            aria-label="Next"
                                         >
                                             <ChevronRight className="h-6 w-6" />
                                         </button>
-                                        
+
                                         <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2">
                                             {allMedia.map((_, idx) => (
-                                                <div 
+                                                <div
                                                     key={idx}
                                                     className={`h-1.5 w-1.5 rounded-full transition-colors ${idx === activeSlide ? 'bg-white' : 'bg-white/30'}`}
                                                 />
@@ -304,11 +320,11 @@ export default function ProjectDetails() {
                     <div className="space-y-12">
                         {project.arcImage && (
                             <section>
-                                <h2 className="mb-4 text-xl font-semibold text-slate-100">
+                                <h2 className="mb-4 text-xl font-semibold text-ink-50">
                                     {t.projectDetail.architecture}
                                 </h2>
                                 <div
-                                    className="cursor-pointer overflow-hidden rounded-lg border border-slate-700 bg-slate-800"
+                                    className="cursor-pointer overflow-hidden rounded-xl border border-ink-700 bg-ink-800"
                                     onClick={() => openLightbox(1)}
                                 >
                                     <img
@@ -321,46 +337,46 @@ export default function ProjectDetails() {
                         )}
 
                         <section>
-                            <h2 className="mb-4 text-xl font-semibold text-slate-100 flex items-center gap-2">
+                            <h2 className="mb-4 text-xl font-semibold text-ink-50 flex items-center gap-2">
                                 <span className="flex h-6 w-6 items-center justify-center rounded bg-rose-500/10 text-rose-400 text-sm">
                                     !
                                 </span>
                                 {t.projectDetail.problem}
                             </h2>
-                            <div className="rounded-lg border border-slate-700 bg-slate-800/50 p-6 text-slate-300 leading-relaxed">
+                            <div className="rounded-xl border border-ink-700 bg-ink-900/50 p-6 text-ink-300 leading-relaxed">
                                 {problem}
                             </div>
                         </section>
 
                         <section>
-                            <h2 className="mb-4 text-xl font-semibold text-slate-100 flex items-center gap-2">
-                                <span className="flex h-6 w-6 items-center justify-center rounded bg-emerald-500/10 text-emerald-400 text-sm">
+                            <h2 className="mb-4 text-xl font-semibold text-ink-50 flex items-center gap-2">
+                                <span className="flex h-6 w-6 items-center justify-center rounded bg-ember-500/10 text-ember-400 text-sm">
                                     ✓
                                 </span>
                                 {t.projectDetail.solution}
                             </h2>
-                            <div className="rounded-lg border border-slate-700 bg-slate-800/50 p-6 text-slate-300 leading-relaxed">
+                            <div className="rounded-xl border border-ink-700 bg-ink-900/50 p-6 text-ink-300 leading-relaxed">
                                 {solution}
                             </div>
                         </section>
 
                         <section>
-                            <h2 className="mb-6 text-xl font-semibold text-slate-100">
+                            <h2 className="mb-6 text-xl font-semibold text-ink-50">
                                 {t.projectDetail.features}
                             </h2>
                             <div className="grid gap-4 sm:grid-cols-2">
                                 {project.features.map((feature, idx) => (
                                     <div
                                         key={idx}
-                                        className="rounded-lg border border-slate-700 bg-slate-800/30 p-4"
+                                        className="rounded-xl border border-ink-700 bg-ink-900/30 p-4"
                                     >
-                                        <div className="mb-2 inline-flex rounded bg-blue-500/10 p-1.5 text-blue-400">
+                                        <div className="mb-2 inline-flex rounded bg-ember-500/10 p-1.5 text-ember-400">
                                             <feature.icon className="h-4 w-4" />
                                         </div>
-                                        <h3 className="mb-1 font-medium text-slate-200">
+                                        <h3 className="mb-1 font-medium text-ink-100">
                                             {feature.title[language]}
                                         </h3>
-                                        <p className="text-sm text-slate-400">
+                                        <p className="text-sm text-ink-400">
                                             {feature.desc[language]}
                                         </p>
                                     </div>
@@ -370,19 +386,21 @@ export default function ProjectDetails() {
 
                         {allMedia.length > 1 && (
                             <section>
-                                <h2 className="mb-4 text-xl font-semibold text-slate-100">
+                                <h2 className="mb-4 text-xl font-semibold text-ink-50">
                                     {t.projectDetail.gallery}
                                 </h2>
                                 <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
                                     {allMedia.map((media, idx) => (
                                         <div
                                             key={idx}
-                                            className="cursor-pointer overflow-hidden rounded-lg border border-slate-700 bg-slate-800 transition-transform hover:scale-[1.02]"
+                                            className="cursor-pointer overflow-hidden rounded-xl border border-ink-700 bg-ink-800 transition-transform hover:scale-[1.02]"
                                             onClick={() => openLightbox(idx)}
                                         >
                                             <img
                                                 src={media.url}
                                                 alt={`${title} ${idx + 1}`}
+                                                loading="lazy"
+                                                decoding="async"
                                                 className="h-32 w-full object-cover"
                                             />
                                         </div>
@@ -393,15 +411,15 @@ export default function ProjectDetails() {
                     </div>
 
                     <aside className="space-y-6">
-                        <div className="sticky top-24 rounded-lg border border-slate-700 bg-slate-800/50 p-6">
-                            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-400">
+                        <div className="sticky top-24 rounded-xl border border-ink-700 bg-ink-900/50 p-6">
+                            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-ink-400">
                                 {t.projectDetail.techStack}
                             </h3>
                             <div className="flex flex-wrap gap-2">
                                 {project.technologies.map((tech) => (
                                     <span
                                         key={tech}
-                                        className="rounded bg-slate-700/50 px-2.5 py-1 text-sm text-slate-300"
+                                        className="rounded bg-ink-800/70 px-2.5 py-1 text-sm text-ink-200"
                                     >
                                         {tech}
                                     </span>
@@ -409,8 +427,8 @@ export default function ProjectDetails() {
                             </div>
 
                             {(project.githubUrl || project.demoUrl) && (
-                                <div className="mt-6 pt-6 border-t border-slate-700">
-                                    <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-slate-400">
+                                <div className="mt-6 pt-6 border-t border-ink-700">
+                                    <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-ink-400">
                                         {t.projectDetail.links}
                                     </h3>
                                     <div className="space-y-2">
@@ -419,7 +437,7 @@ export default function ProjectDetails() {
                                                 href={project.githubUrl}
                                                 target="_blank"
                                                 rel="noreferrer"
-                                                className="flex items-center gap-2 text-sm text-slate-300 hover:text-blue-400 transition-colors"
+                                                className="flex items-center gap-2 text-sm text-ink-200 hover:text-ember-400 transition-colors"
                                             >
                                                 <Github className="h-4 w-4" />
                                                 GitHub
@@ -430,7 +448,7 @@ export default function ProjectDetails() {
                                                 href={project.demoUrl}
                                                 target="_blank"
                                                 rel="noreferrer"
-                                                className="flex items-center gap-2 text-sm text-slate-300 hover:text-blue-400 transition-colors"
+                                                className="flex items-center gap-2 text-sm text-ink-200 hover:text-ember-400 transition-colors"
                                             >
                                                 <ExternalLink className="h-4 w-4" />
                                                 Demo
@@ -440,8 +458,8 @@ export default function ProjectDetails() {
                                 </div>
                             )}
 
-                            <div className="mt-6 pt-6 border-t border-slate-700">
-                                <p className="mb-4 text-sm text-slate-400">
+                            <div className="mt-6 pt-6 border-t border-ink-700">
+                                <p className="mb-4 text-sm text-ink-400">
                                     {t.contact.availability}
                                 </p>
                                 <Button

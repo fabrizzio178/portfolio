@@ -21,13 +21,13 @@ type NativeButtonProps = BaseProps &
 type ButtonProps = AnchorProps | NativeButtonProps;
 
 const variantStyles: Record<ButtonVariant, string> = {
-    primary: 'bg-blue-500 text-white hover:bg-blue-600 focus-visible:ring-blue-500',
-    subtle: 'bg-slate-700 text-slate-100 hover:bg-slate-600 focus-visible:ring-slate-500',
-    ghost: 'bg-transparent text-slate-300 hover:text-white hover:bg-slate-800 focus-visible:ring-slate-600',
+    primary: 'bg-ember-500 text-ink-950 hover:bg-ember-400 focus-visible:ring-ember-500',
+    subtle: 'bg-ink-800 text-ink-100 border border-ink-700 hover:bg-ink-700 hover:border-ink-600 focus-visible:ring-ink-500',
+    ghost: 'bg-transparent text-ink-300 hover:text-ink-50 hover:bg-ink-800 focus-visible:ring-ink-600',
 };
 
 const baseStyles =
-    'inline-flex items-center justify-center rounded-lg px-5 py-2.5 text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 disabled:cursor-not-allowed disabled:opacity-50';
+    'inline-flex items-center justify-center rounded-lg px-5 py-2.5 text-sm font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950 disabled:cursor-not-allowed disabled:opacity-50';
 
 function isAnchorProps(props: ButtonProps): props is AnchorProps {
     return typeof (props as AnchorProps).href === 'string';

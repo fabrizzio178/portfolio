@@ -2,6 +2,7 @@
   "nav": {
     "home": "Home",
     "about": "About",
+    "experience": "Experience",
     "stack": "Stack",
     "projects": "Projects",
     "contact": "Contact"
@@ -9,9 +10,9 @@
   "hero": {
     "greeting": "Hi, I'm",
     "name": "Fabrizzio",
-    "role": "Software Engineer | Backend Developer",
-    "tagline": "Backend Engineering & Automated Infrastructure.",
-    "description": "Specialized in the Java Spring ecosystem and Distributed Systems. I bridge the gap between complex backend logic and resilient DevOps infrastructure.",
+    "role": "Software Engineer | Backend & AI Automation",
+    "tagline": "Distributed systems, agentic workflows, real automation.",
+    "description": "I design backend systems and AI-driven automation — from Python/NestJS services on AWS and Azure to agent workflows with LangChain and LangGraph. Comfortable moving between system architecture and automation that ships to production.",
     "cta": {
       "projects": "View projects",
       "contact": "Let's Talk"
@@ -20,27 +21,35 @@
   "stack": {
     "eyebrow": "Technical Proficiency",
     "title": "Engineering Stack",
-    "subtitle": "A curated toolkit for building high-performance, fault-tolerant distributed systems.",
+    "subtitle": "Backend engineering, AI automation, and the cloud/architecture practices that keep it all running in production.",
     "primary": "Core Engineering",
-    "infrastructure": "Cloud & DevOps Architecture",
-    "familiar": "Workflow & Quality"
+    "ai": "AI & Automation",
+    "infrastructure": "Cloud & Infrastructure",
+    "familiar": "Systems & Architecture"
   },
   "about": {
     "eyebrow": "About me",
     "title": "Driven by Engineering Excellence",
-    "p1": "I'm a backend developer focused on Java and Spring Boot, complemented with Node.js experience. I'm passionate about designing systems that scale and remain maintainable.",
-    "p2": "My training as a Systems Analyst gave me a solid foundation in software architecture, databases, and development best practices. I apply this knowledge to every project, prioritizing clean code and well-structured solutions.",
-    "p3": "I have hands-on experience with Docker, CI/CD pipelines, and AWS services. I understand that good code is just one part: deployment, monitoring, and maintenance are equally important.",
+    "p1": "I'm a backend engineer now focused on AI-driven automation — currently building agentic workflows and automation pipelines in Python and NestJS. My background is in the Java/Spring ecosystem, which shaped how I think about clean architecture and maintainable systems.",
+    "p2": "I'm a Systems Analyst, currently in my 4th year of engineering and on track to also earn degrees in Artificial Intelligence and Systems Engineering. That gave me a solid foundation in software architecture, databases, and development best practices — knowledge I apply to every project, prioritizing clean code and well-structured solutions.",
+    "p3": "I have hands-on experience with Docker, CI/CD pipelines, and cloud services on AWS and Azure. I understand that good code is just one part: deployment, monitoring, and maintenance are equally important.",
     "focus": {
       "title": "My focus",
       "items": [
-        "Microservices architecture",
-        "Well-documented APIs",
-        "Automated CI/CD Pipelines & DevOps",
-        "Containerization with Docker",
-        "Cloud Infrastructure Integration (AWS)"
+        "Microservices & distributed systems architecture",
+        "AI agent workflows (LangChain / LangGraph)",
+        "Automated CI/CD pipelines & DevOps",
+        "Cloud infrastructure (AWS & Azure)",
+        "Production-ready MCPs (Model Context Protocol)"
       ]
     }
+  },
+  "experience": {
+    "eyebrow": "Career",
+    "title": "Experience",
+    "subtitle": "Where I've applied engineering and automation to real, production problems.",
+    "current": "Current",
+    "note": "Before this, my hands-on experience came from university projects and independent builds — see them in the Projects section below."
   },
   "projects": {
     "eyebrow": "Portfolio",

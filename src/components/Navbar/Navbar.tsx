@@ -12,8 +12,9 @@ export function Navbar() {
 
     const LINKS = [
         { id: 'hero', label: t.nav.home },
-        { id: 'stack', label: t.nav.stack },
         { id: 'about', label: t.nav.about },
+        { id: 'experience', label: t.nav.experience },
+        { id: 'stack', label: t.nav.stack },
         { id: 'projects', label: t.nav.projects },
         { id: 'contact', label: t.nav.contact },
     ];
@@ -43,7 +44,7 @@ export function Navbar() {
         if (location.pathname === '/' && location.state && (location.state as any).targetId) {
             const targetId = (location.state as any).targetId;
             window.history.replaceState({}, document.title);
-            
+
             setTimeout(() => {
                 const el = document.getElementById(targetId);
                 if (el) {
@@ -63,16 +64,16 @@ export function Navbar() {
         <header
             className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300 ${
                 isScrolled
-                    ? 'border-slate-800 bg-slate-900/95 backdrop-blur-sm'
+                    ? 'border-ink-800 bg-ink-950/90 backdrop-blur-md'
                     : 'border-transparent bg-transparent'
             }`}
         >
             <nav className="section-container flex items-center justify-between py-4">
                 <button
-                    className="text-lg font-bold text-slate-100 hover:text-blue-400 transition-colors"
+                    className="font-mono text-lg font-semibold text-ink-50 transition-colors hover:text-ember-400"
                     onClick={() => handleNavigate('hero')}
                 >
-                    fabrizzio.dev
+                    fabrizzio<span className="text-ember-500">.</span>dev
                 </button>
 
                 {/* DESKTOP MENU */}
@@ -81,17 +82,17 @@ export function Navbar() {
                         <button
                             key={link.id}
                             onClick={() => handleNavigate(link.id)}
-                            className="rounded-md px-3 py-2 text-sm text-slate-400 transition-colors hover:text-slate-100 hover:bg-slate-800"
+                            className="rounded-md px-3 py-2 text-sm text-ink-300 transition-colors hover:text-ink-50 hover:bg-ink-800/60"
                         >
                             {link.label}
                         </button>
                     ))}
-                    
+
                     <a
                         href="/cv.pdf"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="ml-2 flex items-center gap-1.5 rounded-md border border-slate-700 bg-slate-800 px-3 py-1.5 text-sm text-slate-300 hover:border-slate-500 hover:text-white transition-colors"
+                        className="ml-2 flex items-center gap-1.5 rounded-md border border-ink-700 bg-ink-800/60 px-3 py-1.5 text-sm text-ink-200 hover:border-ink-500 hover:text-ink-50 transition-colors"
                     >
                         <FileText className="h-4 w-4" />
                         CV
@@ -99,7 +100,7 @@ export function Navbar() {
 
                     <button
                         onClick={toggleLanguage}
-                        className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-md border border-slate-700 bg-slate-800 px-3 py-1.5 text-sm text-slate-300 hover:border-slate-600 hover:text-slate-100 transition-colors"
+                        className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-md border border-ink-700 bg-ink-800/60 px-3 py-1.5 text-sm text-ink-200 hover:border-ink-500 hover:text-ink-50 transition-colors"
                         aria-label="Toggle language"
                     >
                         <Globe className="h-4 w-4" />
@@ -110,13 +111,13 @@ export function Navbar() {
                 <div className="flex items-center gap-2 md:hidden">
                     <button
                         onClick={toggleLanguage}
-                        className="flex items-center gap-1 rounded-md border border-slate-700 bg-slate-800 px-2 py-1.5 text-sm text-slate-300"
+                        className="flex items-center gap-1 rounded-md border border-ink-700 bg-ink-800/60 px-2 py-1.5 text-sm text-ink-200"
                     >
                         <Globe className="h-4 w-4" />
                         {language.toUpperCase()}
                     </button>
                     <button
-                        className="flex h-10 w-10 items-center justify-center rounded-md border border-slate-700 bg-slate-800 text-slate-100"
+                        className="flex h-10 w-10 items-center justify-center rounded-md border border-ink-700 bg-ink-800/60 text-ink-50"
                         onClick={() => setIsOpen((prev) => !prev)}
                         aria-label="Toggle navigation"
                     >
@@ -132,13 +133,13 @@ export function Navbar() {
             </nav>
 
             {isOpen && (
-                <div className="border-t border-slate-800 bg-slate-900 px-4 py-4 md:hidden">
+                <div className="border-t border-ink-800 bg-ink-950 px-4 py-4 md:hidden">
                     <div className="flex flex-col gap-1">
                         {LINKS.map((link) => (
                             <button
                                 key={link.id}
                                 onClick={() => handleNavigate(link.id)}
-                                className="rounded-md p-3 text-left text-slate-300 hover:bg-slate-800 hover:text-slate-100 transition-colors"
+                                className="rounded-md p-3 text-left text-ink-200 hover:bg-ink-800/60 hover:text-ink-50 transition-colors"
                             >
                                 {link.label}
                             </button>
@@ -148,7 +149,7 @@ export function Navbar() {
                             download="Fabrizzio_Sana_CV.pdf"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="rounded-md p-3 text-left text-slate-300 hover:bg-slate-800 hover:text-slate-100 transition-colors flex items-center gap-2"
+                            className="rounded-md p-3 text-left text-ink-200 hover:bg-ink-800/60 hover:text-ink-50 transition-colors flex items-center gap-2"
                         >
                             <FileText className="h-4 w-4" />
                             Descargar CV
