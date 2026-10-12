@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Github, ExternalLink, PlayCircle, X, ChevronLeft, ChevronRight, Globe, FileText } from 'lucide-react';
+import { ArrowLeft, Github, ExternalLink, PlayCircle, X, ChevronLeft, ChevronRight, Globe, FileText, Lock } from 'lucide-react';
 import { projects } from '../data/projects';
 import { useEffect, useState } from 'react';
 import { Button } from '../components/UI/Button';
@@ -29,6 +29,15 @@ export default function ProjectDetails() {
     }, []);
 
     useEffect(() => {
+        if (!project) return;
+        const previousTitle = document.title;
+        document.title = `${project.title[language]} | Fabrizzio Sana`;
+        return () => {
+            document.title = previousTitle;
+        };
+    }, [project, language]);
+
+    useEffect(() => {
         if (lightboxOpen) {
             document.body.style.overflow = 'hidden';
         } else {
@@ -40,16 +49,19 @@ export default function ProjectDetails() {
     }, [lightboxOpen]);
 
     const handleGoBack = () => {
-        navigate('/#projects', { replace: true });
+        navigate('/', { replace: true, state: { targetId: 'projects' } });
     };
 
     const toggleLanguage = () => {
         setLanguage(language === 'es' ? 'en' : 'es');
     };
 
+    const arcImage =
+        typeof project?.arcImage === 'string' ? project.arcImage : project?.arcImage?.[language];
+
     const allMedia = [
         ...(project?.images ? project.images.map(url => ({ type: 'image' as const, url })) : []),
-        ...(project?.arcImage ? [{ type: 'image' as const, url: project.arcImage, isArchitecture: true }] : []),
+        ...(arcImage ? [{ type: 'image' as const, url: arcImage, isArchitecture: true }] : []),
         ...(project?.media || []),
     ];
 
@@ -66,8 +78,9 @@ export default function ProjectDetails() {
 
         const handleKeyDown = (e: KeyboardEvent) => {
             if (e.key === 'Escape') setLightboxOpen(false);
-            if (e.key === 'ArrowRight') nextLightbox();
-            if (e.key === 'ArrowLeft') prevLightbox();
+            const count = allMedia.length;
+            if (e.key === 'ArrowRight') setLightboxIndex((prev) => (prev + 1) % count);
+            if (e.key === 'ArrowLeft') setLightboxIndex((prev) => (prev - 1 + count) % count);
         };
 
         window.addEventListener('keydown', handleKeyDown);
@@ -77,12 +90,12 @@ export default function ProjectDetails() {
     if (!project) {
         return (
             <div className="flex h-screen flex-col items-center justify-center gap-4 text-ink-300">
-                <p className="text-lg">Project not found.</p>
+                <p className="text-lg">{t.projectDetail.notFound}</p>
                 <button
                     onClick={() => navigate('/')}
                     className="text-ember-400 underline hover:text-ember-300"
                 >
-                    Go back
+                    {t.projectDetail.goBack}
                 </button>
             </div>
         );
@@ -248,7 +261,8 @@ export default function ProjectDetails() {
                     </div>
                 </header>
 
-                {(embedUrl || allMedia.length > 0) && (
+                {/* A project with only a diagram shows it once, in the architecture section. */}
+                {(embedUrl || (project.images?.length ?? 0) > 0) && (
                     <div className="mb-16 overflow-hidden rounded-xl border border-ink-700 bg-ink-900">
                         {embedUrl ? (
                             <div className="relative">
@@ -318,17 +332,17 @@ export default function ProjectDetails() {
 
                 <div className="grid gap-16 lg:grid-cols-[2fr,1fr]">
                     <div className="space-y-12">
-                        {project.arcImage && (
+                        {arcImage && (
                             <section>
                                 <h2 className="mb-4 text-xl font-semibold text-ink-50">
                                     {t.projectDetail.architecture}
                                 </h2>
                                 <div
                                     className="cursor-pointer overflow-hidden rounded-xl border border-ink-700 bg-ink-800"
-                                    onClick={() => openLightbox(1)}
+                                    onClick={() => openLightbox(project.images?.length ?? 0)}
                                 >
                                     <img
-                                        src={project.arcImage}
+                                        src={arcImage}
                                         alt="Architecture diagram"
                                         className="w-full"
                                     />
@@ -343,7 +357,7 @@ export default function ProjectDetails() {
                                 </span>
                                 {t.projectDetail.problem}
                             </h2>
-                            <div className="rounded-xl border border-ink-700 bg-ink-900/50 p-6 text-ink-300 leading-relaxed">
+                            <div className="whitespace-pre-line rounded-xl border border-ink-700 bg-ink-900/50 p-6 text-ink-300 leading-relaxed">
                                 {problem}
                             </div>
                         </section>
@@ -355,7 +369,7 @@ export default function ProjectDetails() {
                                 </span>
                                 {t.projectDetail.solution}
                             </h2>
-                            <div className="rounded-xl border border-ink-700 bg-ink-900/50 p-6 text-ink-300 leading-relaxed">
+                            <div className="whitespace-pre-line rounded-xl border border-ink-700 bg-ink-900/50 p-6 text-ink-300 leading-relaxed">
                                 {solution}
                             </div>
                         </section>
@@ -426,12 +440,18 @@ export default function ProjectDetails() {
                                 ))}
                             </div>
 
-                            {(project.githubUrl || project.demoUrl) && (
+                            {(project.githubUrl || project.demoUrl || project.privateRepo) && (
                                 <div className="mt-6 pt-6 border-t border-ink-700">
                                     <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-ink-400">
                                         {t.projectDetail.links}
                                     </h3>
                                     <div className="space-y-2">
+                                        {project.privateRepo && (
+                                            <p className="flex items-center gap-2 text-sm text-ink-400">
+                                                <Lock className="h-4 w-4" />
+                                                {t.projectDetail.privateRepo}
+                                            </p>
+                                        )}
                                         {project.githubUrl && (
                                             <a
                                                 href={project.githubUrl}
@@ -463,7 +483,7 @@ export default function ProjectDetails() {
                                     {t.contact.availability}
                                 </p>
                                 <Button
-                                    href="/#contact"
+                                    onClick={() => navigate('/', { state: { targetId: 'contact' } })}
                                     className="w-full justify-center"
                                 >
                                     {t.hero.cta.contact}

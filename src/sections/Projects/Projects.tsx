@@ -19,9 +19,14 @@ export function Projects() {
                 </Reveal>
 
                 <div className="mt-12 grid gap-6 md:grid-cols-2">
+                    {/* The first project spans the full row, so the rest pair up evenly. */}
                     {projects.map((project, index) => (
-                        <Reveal key={project.id} delay={(index % 2) * 0.1}>
-                            <ProjectCard project={project} />
+                        <Reveal
+                            key={project.id}
+                            delay={(index % 2) * 0.1}
+                            className={index === 0 ? 'h-full md:col-span-2' : 'h-full'}
+                        >
+                            <ProjectCard project={project} featured={index === 0} />
                         </Reveal>
                     ))}
                 </div>
