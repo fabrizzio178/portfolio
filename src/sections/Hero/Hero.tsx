@@ -16,8 +16,8 @@ const fadeUp = {
 export function Hero() {
     const { t } = useTranslation();
 
-    const handleScrollToProjects = () => {
-        document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const scrollToSection = (id: string) => {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     };
 
     return (
@@ -38,8 +38,10 @@ export function Hero() {
                         className="mb-6 inline-flex items-center gap-2 rounded-full border border-ink-700 bg-ink-800/50 px-4 py-2 text-sm text-ink-200"
                     >
                         <Terminal className="h-4 w-4 text-ember-400" />
-                        <span>{t.hero.greeting}</span>
-                        <span className="font-semibold text-ink-50">{t.hero.name}</span>
+                        <span>
+                            {t.hero.greeting}{' '}
+                            <span className="font-semibold text-ink-50">{t.hero.name}</span>
+                        </span>
                     </motion.div>
 
                     <motion.h1
@@ -72,6 +74,17 @@ export function Hero() {
                         {t.hero.description}
                     </motion.p>
 
+                    <motion.p
+                        variants={fadeUp}
+                        initial="hidden"
+                        animate="show"
+                        custom={0.35}
+                        className="mt-4 flex items-center gap-2 text-sm text-ink-400"
+                    >
+                        <span className="h-2 w-2 shrink-0 rounded-full bg-ember-500" />
+                        {t.hero.current}
+                    </motion.p>
+
                     <motion.div
                         variants={fadeUp}
                         initial="hidden"
@@ -80,7 +93,7 @@ export function Hero() {
                         className="mt-8 flex flex-col gap-4 sm:flex-row"
                     >
                         <Button
-                            onClick={handleScrollToProjects}
+                            onClick={() => scrollToSection('projects')}
                             className="gap-2 cursor-pointer w-full justify-center sm:w-auto"
                         >
                             {t.hero.cta.projects}
@@ -89,8 +102,8 @@ export function Hero() {
 
                         <Button
                             variant="subtle"
-                            href="#contact"
-                            className="w-full justify-center sm:w-auto"
+                            onClick={() => scrollToSection('contact')}
+                            className="cursor-pointer w-full justify-center sm:w-auto"
                         >
                             {t.hero.cta.contact}
                         </Button>
@@ -115,27 +128,6 @@ export function Hero() {
                             <FileText className="h-4 w-4" />
                             Descargar CV
                         </a>
-                    </motion.div>
-
-                    <motion.div
-                        variants={fadeUp}
-                        initial="hidden"
-                        animate="show"
-                        custom={0.5}
-                        className="mt-12 flex flex-wrap items-center gap-4 text-sm text-ink-400 sm:gap-6"
-                    >
-                        <div className="flex items-center gap-2">
-                            <span className="h-2 w-2 rounded-full bg-ember-500"></span>
-                            <span>Python / NestJS</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <span className="h-2 w-2 rounded-full bg-ember-500"></span>
-                            <span>LangChain / LangGraph</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <span className="h-2 w-2 rounded-full bg-ember-500"></span>
-                            <span>AWS / Azure</span>
-                        </div>
                     </motion.div>
                 </div>
 

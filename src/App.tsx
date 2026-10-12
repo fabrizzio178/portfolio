@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Outlet, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { LanguageProvider } from './i18n';
 import { Navbar } from './components/Navbar/Navbar';
@@ -25,17 +25,14 @@ function Layout() {
 
 function Home() {
   const { hash } = useLocation();
+  const navigate = useNavigate();
 
+  // A link like /#projects still reaches the section (the Navbar scrolls to
+  // targetId), but the hash is dropped so a reload starts at the top.
   useEffect(() => {
-    if (hash) {
-      const element = document.querySelector(hash);
-      if (element) {
-        setTimeout(() => {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      }
-    }
-  }, [hash]);
+    if (!hash) return;
+    navigate('/', { replace: true, state: { targetId: decodeURIComponent(hash.slice(1)) } });
+  }, [hash, navigate]);
 
   return (
     <main>

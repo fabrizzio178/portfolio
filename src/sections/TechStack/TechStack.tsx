@@ -3,50 +3,56 @@ import { SectionTitle } from '../../components/SectionTitle/SectionTitle';
 import { Reveal } from '../../components/Reveal/Reveal';
 
 const aiAutomation = [
-    { name: 'LangChain', icon: '🔗' },
-    { name: 'LangGraph', icon: '🕸️' },
-    { name: 'Deep Agents', icon: '🤖' },
-    { name: 'Harness Engineering', icon: '🦾'}
+    'LangChain',
+    'LangGraph',
+    'Deep Agents',
+    'MCP (Model Context Protocol)',
+    'LLM Evals',
+    'Harness Engineering',
+    'Claude',
+    'GitHub Copilot',
 ];
 
 const primaryStack = [
-    { name: 'Python', icon: '🐍' },
-    { name: 'NestJS', icon: '🐈' },
-    { name: 'TypeScript', icon: 'TS' },
-    { name: 'Node.js', icon: '⬢' },
-    { name: 'React', icon: '⚛️' },
+    'Python',
+    'NestJS',
+    'TypeScript',
+    'Node.js',
+    'Java / Spring Boot',
+    'PostgreSQL',
+    'React',
 ];
 
 const infrastructure = [
-    { name: 'AWS', icon: '☁️' },
-    { name: 'Azure', icon: '🔷' },
-    { name: 'Docker & Compose', icon: '🐳' },
-    { name: 'GitHub Actions', icon: '⚙️' },
-    { name: 'Linux / Bash', icon: '🐧' },
+    'AWS',
+    'Azure',
+    'Docker & Compose',
+    'GitHub Actions',
+    'Linux / Bash',
 ];
 
 const architecture = [
-    { name: 'Microservices', icon: '🧩' },
-    { name: 'Event-Driven Architecture', icon: '📡' },
-    { name: 'API Gateway', icon: '🚪' },
-    { name: 'Distributed Systems', icon: '🌐' },
-    { name: 'JUnit 5 & Mockito', icon: '🧪' },
-    { name: 'OpenAPI / Swagger', icon: '📜' },
-    { name: 'Git Flow', icon: '🔀' },
+    'Microservices',
+    'Event-Driven Architecture',
+    'Hexagonal Architecture',
+    'Spec-Driven Development',
+    'Distributed Systems',
+    'API Gateway',
+    'OpenAPI / Swagger',
+    'Git Flow',
 ];
 
-function TechBadge({ name, icon }: { name: string; icon: string }) {
+function TechBadge({ name }: { name: string }) {
     return (
-        <div className="flex items-center gap-2 rounded-md bg-ink-800/70 px-3 py-2 text-sm font-medium text-ink-100 transition-colors hover:bg-ink-700/80 border border-ink-700/50">
-            <span className="text-base">{icon}</span>
-            <span>{name}</span>
+        <div className="rounded-md border border-ink-700/50 bg-ink-800/70 px-3 py-2 font-mono text-[13px] text-ink-100 transition-colors hover:bg-ink-700/80">
+            {name}
         </div>
     );
 }
 
 interface TechGroupProps {
     title: string;
-    items: typeof primaryStack;
+    items: string[];
     accent: string;
     borderAccent: string;
 }
@@ -59,7 +65,7 @@ function TechGroup({ title, items, accent, borderAccent }: TechGroupProps) {
             </h3>
             <div className="flex flex-wrap gap-3">
                 {items.map((tech) => (
-                    <TechBadge key={tech.name} name={tech.name} icon={tech.icon} />
+                    <TechBadge key={tech} name={tech} />
                 ))}
             </div>
         </div>

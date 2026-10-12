@@ -12,11 +12,12 @@
     "name": "Fabrizzio",
     "role": "Software Engineer | Backend & Automatización con IA",
     "tagline": "Sistemas distribuidos, workflows de agentes, automatización real.",
-    "description": "Diseño sistemas backend y automatización con IA — desde servicios en Python/NestJS sobre AWS y Azure hasta workflows de agentes con LangChain y LangGraph. Me muevo cómodo entre arquitectura de sistemas y automatización que llega a producción.",
+    "description": "Diseño sistemas backend y automatización con IA, desde servicios en Python/NestJS sobre AWS y Azure hasta workflows de agentes con LangChain y LangGraph. Me muevo cómodo entre arquitectura de sistemas y automatización que llega a producción.",
     "cta": {
       "projects": "Ver proyectos",
       "contact": "Hablemos"
-    }
+    },
+    "current": "Actualmente construyo automatización con IA en NaranjaX."
   },
   "stack": {
     "eyebrow": "Capacidad Técnica",
@@ -29,18 +30,18 @@
   },
   "about": {
     "eyebrow": "Sobre mí",
-    "title": "Impulsado por la Excelencia Técnica",
-    "p1": "Soy backend developer enfocado hoy en automatización con IA — actualmente construyo workflows de agentes y pipelines de automatización en Python y NestJS. Mi base viene del ecosistema Java/Spring, que moldeó cómo pienso la arquitectura limpia y los sistemas mantenibles.",
-    "p2": "Soy Analista en Sistemas. Me encuentro en 4to año de ingeniería, proximo a recibirme como Licenciado en Inteligencia Artificial y como Ingeniero en Sistemas. Me dio una base sólida en arquitectura de software, bases de datos, buenas prácticas de desarrollo y metodologías ágiles. Aplico estos conocimientos en cada proyecto, priorizando código limpio y soluciones bien estructuradas.",
-    "p3": "Tengo experiencia práctica con Docker, CI/CD pipelines y servicios cloud en AWS y Azure. Entiendo que el buen código es solo una parte: el despliegue, monitoreo y mantenimiento son igual de importantes.",
+    "title": "Del backend a los agentes de IA",
+    "p1": "Soy backend developer enfocado hoy en automatización con IA. Actualmente construyo workflows de agentes y pipelines de automatización en Python y NestJS. Mi base viene del ecosistema Java/Spring, que moldeó cómo pienso la arquitectura limpia y los sistemas mantenibles.",
+    "p2": "Soy Analista en Sistemas y curso 4.º año de Ingeniería, próximo a recibirme de Licenciado en Inteligencia Artificial y de Ingeniero en Sistemas en la Universidad Tecnológica Nacional (UTN-FRC). Esa formación me dio una base sólida en arquitectura de software, bases de datos, buenas prácticas de desarrollo y metodologías ágiles, que aplico en cada proyecto priorizando código limpio y soluciones bien estructuradas.",
+    "p3": "En el día a día diseño APIs y servicios backend, y construyo agentes que usan herramientas reales: servidores MCP, búsqueda sobre datos internos y flujos con aprobación humana. Me importa que lo que hago se pueda medir y mantener, por eso prefiero tests, evals y salidas estructuradas antes que una demo que solo funciona una vez.",
     "focus": {
       "title": "Mi enfoque",
       "items": [
-        "Arquitectura de microservicios y sistemas distribuidos",
         "Workflows de agentes con IA (LangChain / LangGraph)",
-        "Pipelines de CI/CD automatizados y DevOps",
-        "Infraestructura cloud (AWS y Azure)",
-        "MCPs (Model Context Protocol) productivos"
+        "MCPs (Model Context Protocol) productivos",
+        "APIs y servicios backend (Python, NestJS, Java/Spring)",
+        "Arquitectura de microservicios y sistemas distribuidos",
+        "Cloud y CI/CD (AWS, Azure, GitHub Actions)"
       ]
     }
   },
@@ -49,15 +50,16 @@
     "title": "Experiencia",
     "subtitle": "Dónde apliqué ingeniería y automatización a problemas reales, en producción.",
     "current": "Actual",
-    "note": "Antes de esto, mi experiencia práctica vino de proyectos universitarios y desarrollos propios — podés verlos en la sección de Proyectos."
+    "note": "Antes de esto, mi experiencia práctica vino de proyectos universitarios y desarrollos propios. Podés verlos en la sección de Proyectos."
   },
   "projects": {
     "eyebrow": "Portafolio",
     "title": "Trabajos Seleccionados",
-    "subtitle": "Soluciones reales que demuestran complejidad arquitectónica y valor de negocio.",
+    "subtitle": "Agentes de IA, servidores MCP y sistemas backend, con el código y las decisiones detrás de cada uno.",
     "viewProject": "Ver proyecto",
     "sourceCode": "Repositorio",
-    "liveDemo": "Demo"
+    "liveDemo": "Demo",
+    "aiBadge": "Agentes IA"
   },
   "projectDetail": {
     "backToProjects": "Volver a proyectos",
@@ -69,7 +71,10 @@
     "links": "Recursos",
     "viewCode": "Ver código",
     "viewDemo": "Ver demo",
-    "gallery": "Galería del Proyecto"
+    "gallery": "Galería del Proyecto",
+    "privateRepo": "Repositorio privado",
+    "notFound": "Proyecto no encontrado.",
+    "goBack": "Volver al inicio"
   },
   "contact": {
     "eyebrow": "Contacto",

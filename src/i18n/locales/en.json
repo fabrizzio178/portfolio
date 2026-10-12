@@ -12,11 +12,12 @@
     "name": "Fabrizzio",
     "role": "Software Engineer | Backend & AI Automation",
     "tagline": "Distributed systems, agentic workflows, real automation.",
-    "description": "I design backend systems and AI-driven automation — from Python/NestJS services on AWS and Azure to agent workflows with LangChain and LangGraph. Comfortable moving between system architecture and automation that ships to production.",
+    "description": "I design backend systems and AI-driven automation, from Python/NestJS services on AWS and Azure to agent workflows with LangChain and LangGraph. Comfortable moving between system architecture and automation that ships to production.",
     "cta": {
       "projects": "View projects",
       "contact": "Let's Talk"
-    }
+    },
+    "current": "Currently building AI automation at NaranjaX."
   },
   "stack": {
     "eyebrow": "Technical Proficiency",
@@ -29,18 +30,18 @@
   },
   "about": {
     "eyebrow": "About me",
-    "title": "Driven by Engineering Excellence",
-    "p1": "I'm a backend engineer now focused on AI-driven automation — currently building agentic workflows and automation pipelines in Python and NestJS. My background is in the Java/Spring ecosystem, which shaped how I think about clean architecture and maintainable systems.",
-    "p2": "I'm a Systems Analyst, currently in my 4th year of engineering and on track to also earn degrees in Artificial Intelligence and Systems Engineering. That gave me a solid foundation in software architecture, databases, and development best practices — knowledge I apply to every project, prioritizing clean code and well-structured solutions.",
-    "p3": "I have hands-on experience with Docker, CI/CD pipelines, and cloud services on AWS and Azure. I understand that good code is just one part: deployment, monitoring, and maintenance are equally important.",
+    "title": "From backend to AI agents",
+    "p1": "I'm a backend engineer now focused on AI-driven automation. I currently build agentic workflows and automation pipelines in Python and NestJS. My background is in the Java/Spring ecosystem, which shaped how I think about clean architecture and maintainable systems.",
+    "p2": "I'm a Systems Analyst, currently in my 4th year of engineering and on track to also earn degrees in Artificial Intelligence and Systems Engineering at Universidad Tecnológica Nacional (UTN-FRC). That gave me a solid foundation in software architecture, databases, and development best practices, which I apply to every project, prioritizing clean code and well-structured solutions.",
+    "p3": "Day to day I design APIs and backend services, and I build agents that use real tools: MCP servers, search over internal data and flows with human approval. I care that what I build can be measured and maintained, so I reach for tests, evals and structured outputs before a demo that only works once.",
     "focus": {
       "title": "My focus",
       "items": [
-        "Microservices & distributed systems architecture",
         "AI agent workflows (LangChain / LangGraph)",
-        "Automated CI/CD pipelines & DevOps",
-        "Cloud infrastructure (AWS & Azure)",
-        "Production-ready MCPs (Model Context Protocol)"
+        "Production-ready MCPs (Model Context Protocol)",
+        "APIs & backend services (Python, NestJS, Java/Spring)",
+        "Microservices & distributed systems architecture",
+        "Cloud & CI/CD (AWS, Azure, GitHub Actions)"
       ]
     }
   },
@@ -49,15 +50,16 @@
     "title": "Experience",
     "subtitle": "Where I've applied engineering and automation to real, production problems.",
     "current": "Current",
-    "note": "Before this, my hands-on experience came from university projects and independent builds — see them in the Projects section below."
+    "note": "Before this, my hands-on experience came from university projects and independent builds. You can see them in the Projects section below."
   },
   "projects": {
     "eyebrow": "Portfolio",
     "title": "Selected Work",
-    "subtitle": "Real-world solutions demonstrating architectural complexity and business value.",
+    "subtitle": "AI agents, MCP servers and backend systems, with the code and the decisions behind each one.",
     "viewProject": "View project",
     "sourceCode": "Repository",
-    "liveDemo": "Live Demo"
+    "liveDemo": "Live Demo",
+    "aiBadge": "AI Agents"
   },
   "projectDetail": {
     "backToProjects": "Back to overview",
@@ -69,7 +71,10 @@
     "links": "Links",
     "viewCode": "View code",
     "viewDemo": "View demo",
-    "gallery": "Project Gallery"
+    "gallery": "Project Gallery",
+    "privateRepo": "Private repository",
+    "notFound": "Project not found.",
+    "goBack": "Back to home"
   },
   "contact": {
     "eyebrow": "Contact",

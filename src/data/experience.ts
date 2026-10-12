@@ -25,8 +25,8 @@ export const experience: ExperienceEntry[] = [
       es: 'AI Automation Intern',
     },
     period: {
-      en: 'Jun 2026 — Present',
-      es: 'Jun 2026 — Presente',
+      en: 'Jun 2026 - Present',
+      es: 'Jun 2026 - Presente',
     },
     current: true,
     type: 'work',
@@ -44,15 +44,19 @@ export const experience: ExperienceEntry[] = [
         es: 'Trabajo con Deep Agents y workflows de agentes basados en LangGraph.',
       },
       {
-        en: 'Automated a document-intake pipeline handling ~20,000 documents/month — previously uploaded by hand, now flowing directly through the app.',
-        es: 'Automaticé un pipeline de carga de documentos de ~20.000 documentos mensuales — antes se cargaban a mano, ahora fluyen directamente por areas internas.',
+        en: 'Automated a document-intake pipeline that processes thousands of documents per month. They used to be uploaded by hand and now flow directly through the internal areas.',
+        es: 'Automaticé un pipeline de carga de documentos que procesa miles de documentos por mes. Antes se cargaban a mano y ahora fluyen directamente por las áreas internas.',
+      },
+      {
+        en: 'Built an MCP server that lets an agent assist with the invoice-intake process. Its tools query Azure AI Search; migrating search to that service cut query time roughly 7x.',
+        es: 'Desarrollé un MCP con el que un agente asiste en el proceso de carga de facturas. Sus tools consultan Azure AI Search; al migrar la búsqueda a ese servicio reduje el tiempo de consulta unas 7 veces.',
       },
     ],
-    technologies: ['Python', 'NestJS', 'AWS', 'Azure', 'LangChain', 'LangGraph', 'Deep Agents'],
+    technologies: ['Python', 'NestJS', 'AWS', 'Azure', 'Azure AI Search', 'MCP', 'LangChain', 'LangGraph', 'Deep Agents'],
   },
   {
     id: 'boardbite-hackathon',
-    company: 'Hackathon UTN-FRC — BoardBite (Córdoba, Argentina)',
+    company: 'Hackathon UTN-FRC: BoardBite (Córdoba, Argentina)',
     role: {
       en: 'Backend Developer & AI Integrations',
       es: 'Desarrollador Backend & Integraciones IA',
