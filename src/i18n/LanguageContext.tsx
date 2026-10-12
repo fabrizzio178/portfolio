@@ -1,18 +1,9 @@
-import { createContext, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import type { ReactNode } from 'react';
 import en from './locales/en.json';
 import es from './locales/es.json';
-
-type Language = 'es' | 'en';
-type Translations = typeof es;
-
-interface LanguageContextType {
-  language: Language;
-  setLanguage: (lang: Language) => void;
-  t: Translations;
-}
-
-export const LanguageContext = createContext<LanguageContextType | null>(null);
+import { LanguageContext } from './context';
+import type { Language, Translations } from './context';
 
 const translations: Record<Language, Translations> = { en, es };
 

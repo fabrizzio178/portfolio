@@ -41,8 +41,8 @@ export function Navbar() {
     };
 
     useEffect(() => {
-        if (location.pathname === '/' && location.state && (location.state as any).targetId) {
-            const targetId = (location.state as any).targetId;
+        const targetId = (location.state as { targetId?: string } | null)?.targetId;
+        if (location.pathname === '/' && targetId) {
             window.history.replaceState({}, document.title);
 
             setTimeout(() => {
